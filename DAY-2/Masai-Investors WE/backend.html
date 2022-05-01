@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend</title>
+    <style>
+        body{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(188, 252, 252, 0.548);
+        }
+        #form{
+            width: 20%;
+            margin: auto;
+            flex-direction: column;
+            margin-top: 5%;
+            padding: 2%;
+            background-color: rgb(255, 255, 255);
+        }
+        #form>input{
+            width: 90%;
+            padding: 2%;
+            height: 40px;
+            margin-top: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        #form>input[type = submit]{
+            width: 95%;
+            padding: 2%;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" id="form">
+        <input type="text" placeholder="Enter Full Name" id="name">
+        <input type="text" placeholder="img.link" id="img">
+        <input type="text" placeholder="logoimg" id="companylogo">
+        <input type="text" placeholder="Role in company" id="role">
+        <input type="submit" value="SUBMIT">
+    </form>
+</body>
+</html>
+
+<script>
+    var form=document.querySelector("form")
+        form.addEventListener("submit",subfunc)
+    var data=JSON.parse(localStorage.getItem("investor")) || [];
+
+        function subfunc(){
+            event.preventDefault()
+        
+            var carddetails={
+                Name : form.name.value,
+                profileimg : form.img.value,
+                logo : form.companylogo.value,
+                role : form.role.value,
+            }
+
+         data.push(carddetails)
+         localStorage.setItem("investor",JSON.stringify(data))
+         window.location.reload();
+
+        }
+</script>
